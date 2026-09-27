@@ -1,0 +1,2019 @@
+/* ====================================================================
+   Park Wave - iOS Pastel Glassmorphism Theme
+   Aesthetics: Soft Pastel Mesh Aurora, Frosted Liquid Glass, SF/Outfit Typography
+   ==================================================================== */
+
+:root {
+  /* Ambient Pastel Backgrounds */
+  --bg-mesh: radial-gradient(at 15% 15%, rgba(224, 231, 255, 0.85) 0px, transparent 55%),
+             radial-gradient(at 85% 12%, rgba(254, 215, 226, 0.85) 0px, transparent 55%),
+             radial-gradient(at 50% 50%, rgba(254, 240, 222, 0.7) 0px, transparent 60%),
+             radial-gradient(at 85% 85%, rgba(209, 250, 229, 0.85) 0px, transparent 55%),
+             radial-gradient(at 15% 85%, rgba(237, 233, 254, 0.85) 0px, transparent 55%),
+             #f1f5f9;
+
+  /* iOS Frosted Glass Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-hover: rgba(255, 255, 255, 0.82);
+  --glass-bg-card: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-border-subtle: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 10px 30px 0 rgba(31, 38, 135, 0.08);
+  --glass-shadow-hover: 0 14px 38px 0 rgba(31, 38, 135, 0.14);
+  --glass-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
+
+  /* Typography Colors (High contrast, refined slate) */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  /* Pastel Accent Colors */
+  --pastel-blue: #60a5fa;
+  --pastel-blue-deep: #2563eb;
+  --pastel-purple: #a78bfa;
+  --pastel-pink: #f472b6;
+  --pastel-mint: #34d399;
+  --pastel-mint-deep: #059669;
+  --pastel-coral: #fb7185;
+  --pastel-coral-deep: #e11d48;
+  --pastel-amber: #fbbf24;
+
+  /* Status Colors */
+  --status-vacant-bg: rgba(209, 250, 229, 0.6);
+  --status-vacant-border: rgba(52, 211, 153, 0.65);
+  --status-vacant-fg: #065f46;
+
+  --status-occupied-bg: rgba(255, 228, 230, 0.7);
+  --status-occupied-border: rgba(251, 113, 133, 0.65);
+  --status-occupied-fg: #9f1239;
+
+  /* Fonts */
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+  /* Border Radii */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  --transition-smooth: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: #0b1120;
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Subtle background ambient mesh glow orb */
+body::before {
+  content: '';
+  position: fixed;
+  top: -150px;
+  left: 20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  filter: blur(70px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -150px;
+  right: 15%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   Header - iOS Floating Frosted Glass Bar
+   ------------------------------------------------------------- */
+.app-header {
+  position: sticky;
+  top: 14px;
+  z-index: 50;
+  margin: 0 auto;
+  width: calc(100% - 32px);
+  max-width: 1400px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: all var(--transition-smooth);
+}
+
+.header-container {
+  padding: 12px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  font-size: 24px;
+  background: linear-gradient(135deg, #818cf8 0%, #38bdf8 100%);
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.brand-text h1 {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+}
+
+.brand-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(209, 250, 229, 0.7);
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  color: #065f46;
+  box-shadow: 0 2px 8px rgba(52, 211, 153, 0.15);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--pastel-mint-deep);
+  box-shadow: 0 0 6px var(--pastel-mint);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.live-clock {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid var(--glass-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* -------------------------------------------------------------
+   Main Content Layout
+   ------------------------------------------------------------- */
+.app-main {
+  max-width: 1400px;
+  width: 100%;
+  margin: 20px auto 0;
+  padding: 10px 16px 40px;
+  flex: 1;
+}
+
+/* -------------------------------------------------------------
+   KPI Section - Pastel Glass Tiles
+   ------------------------------------------------------------- */
+.kpi-section {
+  margin-bottom: 22px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+}
+
+.kpi-card {
+  background: var(--glass-bg-card);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--glass-shadow);
+  box-shadow: var(--glass-specular), var(--glass-shadow);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--glass-specular), var(--glass-shadow-hover);
+}
+
+.kpi-icon {
+  font-size: 22px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.total-card .kpi-icon { background: #ede9fe; color: #6366f1; }
+.occupied-card .kpi-icon { background: #ffe4e6; color: #e11d48; }
+.vacant-card .kpi-icon { background: #d1fae5; color: #059669; }
+.revenue-card .kpi-icon { background: #fef3c7; color: #d97706; }
+.next-card .kpi-icon { background: #e0f2fe; color: #0284c7; }
+
+.kpi-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.kpi-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+.occupied-card .kpi-value { color: var(--pastel-coral-deep); }
+.vacant-card .kpi-value { color: var(--pastel-mint-deep); }
+.revenue-card .kpi-value { color: #b45309; }
+.next-card .kpi-value.highlight { color: #0284c7; }
+
+/* -------------------------------------------------------------
+   Segmented iOS Tab Control
+   ------------------------------------------------------------- */
+.nav-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 5px;
+  gap: 6px;
+  margin-bottom: 22px;
+  overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.tab-btn.active {
+  color: #1e3a8a;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------
+   Tab Contents & Common Cards
+   ------------------------------------------------------------- */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: iosFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes iosFadeIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.panel-header h2 {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+}
+
+.panel-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* iOS Glass Card Container */
+.card {
+  background: var(--glass-bg-card);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  box-shadow: var(--glass-specular), var(--glass-shadow);
+  transition: all var(--transition-smooth);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.card-header h2 {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 22px;
+}
+
+/* -------------------------------------------------------------
+   Visual 2D Parking Bay Grid - iOS Pastel Cards
+   ------------------------------------------------------------- */
+.grid-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group {
+  display: flex;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.filter-btn.active {
+  background: #ffffff;
+  color: #1e3a8a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+}
+
+.parking-lot-container {
+  background: var(--glass-bg-card);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--glass-specular), var(--glass-shadow);
+}
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Individual Parking Bay (Pastel Glass) */
+.bay-card {
+  border-radius: var(--radius-md);
+  padding: 16px;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.bay-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+/* Vacant Bay: Pastel Mint Glass */
+.bay-card.vacant {
+  background: rgba(240, 253, 244, 0.75);
+  border: 1.5px dashed var(--status-vacant-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(52, 211, 153, 0.12);
+}
+
+.bay-card.vacant:hover {
+  background: rgba(240, 253, 244, 0.95);
+  border-color: var(--pastel-mint-deep);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 8px 24px rgba(52, 211, 153, 0.25);
+}
+
+/* Occupied Bay: Pastel Rose Glass */
+.bay-card.occupied {
+  background: rgba(255, 241, 242, 0.82);
+  border: 1.5px solid var(--status-occupied-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 4px 14px rgba(251, 113, 133, 0.14);
+}
+
+.bay-card.occupied:hover {
+  background: rgba(255, 241, 242, 0.95);
+  border-color: var(--pastel-coral-deep);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.95), 0 8px 24px rgba(251, 113, 133, 0.25);
+}
+
+.bay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bay-no {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.bay-status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.4px;
+}
+
+.bay-card.vacant .bay-status-badge {
+  background: var(--status-vacant-bg);
+  color: var(--status-vacant-fg);
+  border: 1px solid var(--status-vacant-border);
+}
+
+.bay-card.occupied .bay-status-badge {
+  background: var(--status-occupied-bg);
+  color: var(--status-occupied-fg);
+  border: 1px solid var(--status-occupied-border);
+}
+
+/* License Plate Badge in Occupied Bay */
+.plate-pill {
+  background: #ffffff;
+  color: #0f172a;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1.5px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 8px 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.plate-pill .plate-ind {
+  background: #1e40af;
+  color: #ffffff;
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.vacant-silhouette {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #059669;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+.vacant-silhouette span:first-child {
+  font-size: 24px;
+  margin-bottom: 2px;
+}
+
+.bay-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.bay-action-btn {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all var(--transition-smooth);
+}
+
+.bay-action-btn:hover {
+  background: #6366f1;
+  color: #ffffff;
+}
+
+/* -------------------------------------------------------------
+   Forms & Inputs - iOS Style
+   ------------------------------------------------------------- */
+.entry-layout, .exit-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 22px;
+}
+
+@media (max-width: 960px) {
+  .entry-layout, .exit-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+
+.form-input, .form-select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+  transition: all var(--transition-smooth);
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  background: #ffffff;
+  border-color: #818cf8;
+  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.25);
+}
+
+/* Indian Number Plate Input */
+.plate-input-wrapper {
+  display: flex;
+  background: #ffffff;
+  border: 2px solid #0f172a;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.plate-country {
+  background: #1e3a8a;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+}
+
+.plate-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #0f172a;
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 800;
+  padding: 10px 16px;
+  text-transform: uppercase;
+}
+
+.form-hint {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.next-allocation-preview {
+  background: rgba(224, 242, 254, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.preview-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0369a1;
+}
+
+.preview-slot {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 800;
+  color: #0284c7;
+}
+
+/* -------------------------------------------------------------
+   Buttons - iOS Soft Gradient & Glass Pills
+   ------------------------------------------------------------- */
+.btn {
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-smooth);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.4);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #fb7185 0%, #e11d48 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.28);
+}
+
+.btn-danger:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(225, 29, 72, 0.38);
+}
+
+.btn-lg {
+  padding: 14px 24px;
+  font-size: 15px;
+  border-radius: 14px;
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: var(--radius-full);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* -------------------------------------------------------------
+   Alert Boxes & Badges
+   ------------------------------------------------------------- */
+.badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.badge-info {
+  background: rgba(224, 231, 255, 0.85);
+  color: #4338ca;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+.badge-warning {
+  background: rgba(254, 243, 199, 0.85);
+  color: #b45309;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-success {
+  background: rgba(209, 250, 229, 0.85);
+  color: #065f46;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+
+.alert-box {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.alert-box.error {
+  background: rgba(255, 228, 230, 0.9);
+  border: 1px solid rgba(251, 113, 133, 0.6);
+  color: #9f1239;
+}
+
+.alert-box.error strong {
+  color: #be123c;
+  font-size: 14px;
+}
+
+.alert-icon {
+  font-size: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------
+   Side Info & Rules Cards
+   ------------------------------------------------------------- */
+.side-info-card h3 {
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 8px;
+  color: var(--text-primary);
+}
+
+.rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.rule-list li {
+  display: flex;
+  gap: 12px;
+}
+
+.rule-bullet {
+  background: #ede9fe;
+  color: #6366f1;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.rule-list strong {
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.rule-list p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.pricing-formula-box {
+  background: rgba(240, 249, 255, 0.7);
+  border: 1px solid rgba(186, 230, 253, 0.8);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.formula-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #0284c7;
+  margin-bottom: 6px;
+}
+
+.pricing-examples-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.pricing-examples-table th, .pricing-examples-table td {
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.pricing-examples-table th {
+  color: var(--text-muted);
+}
+
+/* -------------------------------------------------------------
+   Billing Card (Tab 3)
+   ------------------------------------------------------------- */
+.divider-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 16px 0;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.divider-text::before, .divider-text::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.divider-text span {
+  padding: 0 10px;
+}
+
+.search-inline {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.billing-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--glass-specular), 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.billing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 8px;
+}
+
+.billing-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.billing-status {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0284c7;
+}
+
+.billing-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.bill-row strong, .bill-row span:last-child {
+  color: var(--text-primary);
+}
+
+.highlight-text {
+  color: #0284c7 !important;
+  font-weight: 700;
+}
+
+.bill-divider {
+  border: none;
+  border-top: 1px dashed rgba(0, 0, 0, 0.12);
+  margin: 4px 0;
+}
+
+.total-row {
+  font-size: 16px;
+  font-weight: 800;
+  align-items: center;
+}
+
+.total-amount {
+  font-size: 22px;
+  color: #e11d48 !important;
+  font-family: var(--font-mono);
+}
+
+/* -------------------------------------------------------------
+   Search View (Tab 4)
+   ------------------------------------------------------------- */
+.search-card {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.search-input-lg {
+  font-size: 16px;
+  padding: 14px 18px;
+}
+
+.search-result-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-top: 22px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.result-slot-badge {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 800;
+  background: #e0f2fe;
+  border: 1.5px solid #38bdf8;
+  color: #0284c7;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+}
+
+.result-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+
+.detail-label {
+  color: var(--text-muted);
+  display: block;
+}
+
+.detail-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* -------------------------------------------------------------
+   Activity Ledger & Table (Tab 5)
+   ------------------------------------------------------------- */
+.ledger-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-input-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+  width: 200px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.data-table th {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.plate-badge {
+  background: #ffffff;
+  border: 1px solid #334155;
+  color: #0f172a;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* -------------------------------------------------------------
+   Receipt Modal Dialog
+   ------------------------------------------------------------- */
+.receipt-dialog {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  background: transparent;
+  max-width: 480px;
+  width: 90%;
+  margin: auto;
+}
+
+.receipt-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(12px);
+}
+
+.receipt-dialog-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-close-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.dialog-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.btn-icon-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.paper-receipt {
+  background: #fafaf9;
+  color: #1c1917;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid #6366f1;
+}
+
+.receipt-ascii {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  color: #1c1917;
+}
+
+.receipt-barcode {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #a8a29e;
+  color: #78716c;
+}
+
+.dialog-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* -------------------------------------------------------------
+   Toast Notifications
+   ------------------------------------------------------------- */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+
+.toast {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideToast 0.25s ease;
+}
+
+.toast.success { border-left: 4px solid var(--pastel-mint-deep); }
+.toast.error { border-left: 4px solid var(--pastel-coral-deep); }
+.toast.info { border-left: 4px solid #6366f1; }
+
+@keyframes slideToast {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* -------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------- */
+.app-footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 10;
+}
+
+/* =============================================================
+   CINEMATIC ANIMATED AERIAL PARKING LOT BACKGROUND
+   Top-down aerial visual with moving cars, beacons & lane physics
+   ============================================================= */
+
+.cinema-bg-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background-color: #080d1a;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinema-bg-container.cinema-hidden {
+  opacity: 0.15;
+}
+
+/* Parallax Outer Wrapper */
+.cinema-bg-parallax {
+  position: absolute;
+  inset: -60px;
+  width: calc(100% + 120px);
+  height: calc(100% + 120px);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.4, 1);
+}
+
+/* Aerial Parking Lot Base Texture */
+.cinema-bg-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/parking_lot_aerial.jpg');
+  background-size: cover;
+  background-position: center 46%;
+  background-repeat: no-repeat;
+  filter: brightness(0.66) contrast(1.22) saturate(0.82);
+  transform: scale(1.02);
+}
+
+/* Roadway Traffic Direction Guide Highlights */
+.cinema-lanes-indicator {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lane-marker {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%);
+  pointer-events: none;
+}
+
+.lane-marker.lane-west {
+  top: 42%;
+  left: 10%;
+  width: 80%;
+}
+
+.lane-marker.lane-east {
+  top: 56%;
+  left: 10%;
+  width: 80%;
+}
+
+/* -------------------------------------------------------------
+   Aerial Bay Beacons (S-01 to S-20)
+   Overlaid on top-down lot to show live vacancy/occupancy glow
+   ------------------------------------------------------------- */
+.cinema-lot-beacons {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.slot-beacon {
+  position: absolute;
+  width: 62px;
+  height: 96px;
+  border-radius: 8px;
+  border: 1.5px dashed rgba(52, 211, 153, 0.7);
+  background: rgba(16, 185, 129, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px 2px;
+  box-sizing: border-box;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+}
+
+.slot-beacon.vacant {
+  border-color: rgba(52, 211, 153, 0.85);
+  background: rgba(16, 185, 129, 0.14);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.3), inset 0 0 10px rgba(52, 211, 153, 0.2);
+}
+
+.slot-beacon.occupied {
+  border-color: rgba(248, 113, 113, 0.9);
+  background: rgba(239, 68, 68, 0.22);
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.45), inset 0 0 12px rgba(248, 113, 113, 0.25);
+  border-style: solid;
+}
+
+.beacon-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(4px);
+  margin-bottom: 2px;
+}
+
+.slot-beacon.vacant .beacon-tag {
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.6);
+  text-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
+}
+
+.slot-beacon.occupied .beacon-tag {
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
+}
+
+.beacon-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.slot-beacon.vacant .beacon-dot {
+  background-color: #10b981;
+  box-shadow: 0 0 10px #34d399;
+  animation: beaconPulseGreen 2s infinite ease-in-out;
+}
+
+.slot-beacon.occupied .beacon-dot {
+  background-color: #ef4444;
+  box-shadow: 0 0 10px #f87171;
+  animation: beaconPulseRed 2s infinite ease-in-out;
+}
+
+@keyframes beaconPulseGreen {
+  0%, 100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 8px #10b981; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 16px #34d399; }
+}
+
+@keyframes beaconPulseRed {
+  0%, 100% { transform: scale(1); opacity: 0.9; box-shadow: 0 0 8px #ef4444; }
+  50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 18px #f87171; }
+}
+
+/* -------------------------------------------------------------
+   Cinema Moving Cars Stage & Vector Sprites
+   ------------------------------------------------------------- */
+.cinema-cars-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.cinema-car {
+  position: absolute;
+  width: 72px;
+  height: 36px;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.8));
+  transition: opacity 0.4s ease;
+  z-index: 10;
+}
+
+/* Car Chassis */
+.car-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  overflow: visible;
+  transition: all 0.3s ease;
+}
+
+/* Car Colors */
+.car-white .car-body {
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 50%, #cbd5e1 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 1), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.car-black .car-body {
+  background: linear-gradient(180deg, #334155 0%, #0f172a 50%, #020617 100%);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3), 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.car-red .car-body {
+  background: linear-gradient(180deg, #f87171 0%, #dc2626 50%, #991b1b 100%);
+  border-color: rgba(254, 202, 202, 0.4);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 2px 6px rgba(153, 27, 27, 0.5);
+}
+
+.car-silver .car-body {
+  background: linear-gradient(180deg, #f1f5f9 0%, #94a3b8 50%, #64748b 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.car-bronze .car-body {
+  background: linear-gradient(180deg, #fde68a 0%, #d97706 50%, #78350f 100%);
+  border-color: rgba(254, 243, 199, 0.4);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5), 0 2px 6px rgba(120, 53, 15, 0.5);
+}
+
+/* Windows & Panoramic Glass Roof */
+.car-windshield {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 20px;
+  right: 18px;
+  background: linear-gradient(90deg, #090e17 0%, #1e293b 70%, #0f172a 100%);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+}
+
+.car-sunroof {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 6px;
+  right: 8px;
+  background: rgba(15, 23, 42, 0.92);
+  border-radius: 4px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Front Hood & Rear Trunk Accents */
+.car-hood {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15));
+}
+
+.car-trunk {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 18px;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+}
+
+/* Side Mirrors */
+.car-mirror {
+  position: absolute;
+  width: 5px;
+  height: 4px;
+  right: 22px;
+  background: inherit;
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.car-mirror.top { top: -4px; }
+.car-mirror.bottom { bottom: -4px; }
+
+/* -------------------------------------------------------------
+   Car Lighting Systems (Headlights, Brakes, Reverse, Indicators)
+   ------------------------------------------------------------- */
+/* Twin Headlights & Conical Light Beams */
+.car-headlight {
+  position: absolute;
+  right: -1px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fef08a;
+  box-shadow: 0 0 10px #fef08a, 0 0 16px rgba(255, 255, 255, 0.9);
+}
+
+.car-headlight.top { top: 3px; }
+.car-headlight.bottom { bottom: 3px; }
+
+.car-light-cone {
+  position: absolute;
+  right: -95px;
+  top: -24px;
+  width: 100px;
+  height: 84px;
+  background: radial-gradient(ellipse at 0% 50%, rgba(254, 240, 138, 0.45) 0%, rgba(255, 255, 255, 0.22) 25%, transparent 75%);
+  clip-path: polygon(0% 40%, 100% 0%, 100% 100%, 0% 60%);
+  pointer-events: none;
+  opacity: 0.85;
+  filter: blur(1.5px);
+  transition: opacity 0.3s ease;
+}
+
+/* Taillights / Red Brake Glow */
+.car-taillight {
+  position: absolute;
+  left: -2px;
+  width: 4px;
+  height: 5px;
+  border-radius: 2px;
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+  opacity: 0.75;
+  transition: all 0.2s ease;
+}
+
+.car-taillight.top { top: 3px; }
+.car-taillight.bottom { bottom: 3px; }
+
+.cinema-car.is-braking .car-taillight {
+  opacity: 1;
+  transform: scale(1.6);
+  box-shadow: 0 0 18px 5px #ef4444, -14px 0 24px rgba(239, 68, 68, 0.9);
+}
+
+/* Reverse Lights (Pure White Beam on Backing Out) */
+.car-reverse-beam {
+  position: absolute;
+  left: -50px;
+  top: 6px;
+  width: 50px;
+  height: 24px;
+  background: radial-gradient(ellipse at 100% 50%, rgba(255, 255, 255, 0.85) 0%, rgba(226, 232, 240, 0.35) 40%, transparent 80%);
+  clip-path: polygon(100% 35%, 0% 5%, 0% 95%, 100% 65%);
+  pointer-events: none;
+  opacity: 0;
+  filter: blur(1px);
+  transition: opacity 0.25s ease;
+}
+
+.cinema-car.is-reversing .car-reverse-beam {
+  opacity: 1;
+}
+
+/* Turn Indicator (Amber Blink) */
+.car-indicator {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #f59e0b;
+  opacity: 0;
+}
+
+.car-indicator.front-right { right: 0; bottom: 1px; }
+.car-indicator.front-left { right: 0; top: 1px; }
+
+.cinema-car.indicating-right .car-indicator.front-right,
+.cinema-car.indicating-left .car-indicator.front-left {
+  animation: amberBlink 0.38s infinite alternate;
+}
+
+@keyframes amberBlink {
+  0% { opacity: 0; box-shadow: none; }
+  100% { opacity: 1; box-shadow: 0 0 10px #f59e0b, 0 0 16px #fbbf24; }
+}
+
+/* License Plate Overlay on Live DB Cars */
+.car-plate-tag {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+/* -------------------------------------------------------------
+   Cinematic Dark Vignette & Readability Overlay
+   ------------------------------------------------------------- */
+.cinema-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(11, 17, 32, 0.42) 0%, rgba(11, 17, 32, 0.76) 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* -------------------------------------------------------------
+   Header Toggle Button
+   ------------------------------------------------------------- */
+.cinema-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(30, 41, 59, 0.85);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+}
+
+.cinema-toggle-btn:hover {
+  background: rgba(51, 65, 85, 0.95);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.cinema-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: pulseCinema 1.6s infinite ease-in-out;
+}
+
+.cinema-toggle-btn.is-inactive {
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cinema-toggle-btn.is-inactive .cinema-pulse-dot {
+  background: #64748b;
+  box-shadow: none;
+  animation: none;
+}
+
+@keyframes pulseCinema {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; box-shadow: 0 0 12px #0ea5e9; }
+}
+
+/* =============================================================
+   PARKWAVE BMW-STYLE INTRO SPLASH ANIMATION
+   Circular ring trace, BMW roundel reveal, specular shine sweep,
+   staggered automotive typography, and seamless dashboard crossfade
+   ============================================================= */
+
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background: radial-gradient(circle at 50% 45%, #0d1527 0%, #060913 70%, #03050a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.splash-screen.splash-hidden {
+  opacity: 0;
+  transform: scale(1.06);
+  pointer-events: none;
+}
+
+.splash-ambient-glow {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 140, 227, 0.22) 0%, rgba(30, 58, 138, 0.12) 50%, transparent 75%);
+  filter: blur(90px);
+  animation: splashAmbientPulse 3.5s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+.splash-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Outer Badge Container */
+.badge-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.85));
+}
+
+.badge-svg {
+  overflow: visible;
+}
+
+/* 1. Outer Tracing Ring (0.0s - 1.0s) */
+.ring-trace {
+  stroke-dasharray: 580;
+  stroke-dashoffset: 580;
+  animation: drawCircleRing 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.7));
+}
+
+/* 2. Inner Roundel Badge Reveal (0.95s - 1.7s) */
+.badge-inner-group {
+  opacity: 0;
+  transform-origin: 100px 100px;
+  transform: scale(0.86);
+  animation: badgeReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
+}
+
+/* 3. Specular Chrome Shine Sweep (1.5s - 2.5s) */
+.badge-shine-sweep {
+  position: absolute;
+  inset: -15px;
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.badge-shine-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+  transform: rotate(35deg);
+  opacity: 0;
+  animation: shinePass 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) 1.55s forwards;
+}
+
+/* 4. Brand Typography (1.6s - 2.8s) */
+.splash-typography {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash-brand-title {
+  font-family: var(--font-main);
+  font-size: 34px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  text-indent: 0.38em; /* Centers wide tracking */
+  margin: 0;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85), 0 0 35px rgba(0, 140, 227, 0.4);
+  opacity: 0;
+  transform: translateY(18px);
+  animation: titleReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+}
+
+.splash-tagline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  text-transform: uppercase;
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: taglineReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) 2.05s forwards;
+}
+
+/* Skip Button */
+.splash-skip-btn {
+  position: absolute;
+  bottom: 32px;
+  right: 36px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #cbd5e1;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 100000;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.splash-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateX(3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* Keyframe Animations */
+@keyframes drawCircleRing {
+  0% {
+    stroke-dashoffset: 580;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.85));
+  }
+}
+
+@keyframes badgeReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 24px rgba(0, 140, 227, 0.5));
+  }
+}
+
+@keyframes shinePass {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    left: 140%;
+    opacity: 0;
+  }
+}
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+    letter-spacing: 0.26em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.38em;
+  }
+}
+
+@keyframes taglineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes splashAmbientPulse {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+

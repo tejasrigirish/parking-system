@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Park Wave • Smart Parking System</title>
+  <meta name="description" content="Automated Smart Parking Management System for 4-Wheeler Vehicles in Bangalore with real-time slot allocation, duplicate check, and billing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ============================================================
+       PARKWAVE BMW-Style Intro Splash Animation Screen
+       ============================================================ -->
+  <div class="splash-screen" id="splashScreen" role="dialog" aria-modal="true" aria-label="PARKWAVE Intro Animation">
+    <div class="splash-ambient-glow"></div>
+    <div class="splash-content">
+      <!-- Outer Tracing Ring & Custom PARKWAVE Emblem Badge -->
+      <div class="badge-wrapper">
+        <svg class="badge-svg" viewBox="0 0 200 200" width="180" height="180">
+          <defs>
+            <!-- Luxury Titanium Chrome Gradient -->
+            <linearGradient id="chromeRing" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="25%" stop-color="#94a3b8"/>
+              <stop offset="50%" stop-color="#f8fafc"/>
+              <stop offset="75%" stop-color="#475569"/>
+              <stop offset="100%" stop-color="#cbd5e1"/>
+            </linearGradient>
+
+            <!-- Electric Wave Gradient (Cyan -> Cobalt -> Deep Sapphire) -->
+            <linearGradient id="electricWave" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="45%" stop-color="#0284c7"/>
+              <stop offset="100%" stop-color="#1d4ed8"/>
+            </linearGradient>
+
+            <!-- Platinum Pillar Gradient -->
+            <linearGradient id="platinumPillar" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="50%" stop-color="#e2e8f0"/>
+              <stop offset="100%" stop-color="#94a3b8"/>
+            </linearGradient>
+
+            <!-- Neon Cyan Accent Gradient -->
+            <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00f2fe"/>
+              <stop offset="100%" stop-color="#4facfe"/>
+            </linearGradient>
+
+            <!-- Deep Obsidian Core Gradient -->
+            <radialGradient id="badgeCoreDark" cx="50%" cy="45%" r="65%">
+              <stop offset="0%" stop-color="#111c33"/>
+              <stop offset="60%" stop-color="#080d1a"/>
+              <stop offset="100%" stop-color="#03060d"/>
+            </radialGradient>
+
+            <!-- Glass Lens Specular Highlight -->
+            <radialGradient id="lensSpecular" cx="35%" cy="25%" r="60%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.4)"/>
+              <stop offset="50%" stop-color="rgba(255,255,255,0.03)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+          </defs>
+
+          <!-- 1. Tracing Outer Ring (animated via stroke-dashoffset) -->
+          <circle class="ring-trace" cx="100" cy="100" r="92" fill="none" stroke="url(#chromeRing)" stroke-width="4" stroke-linecap="round"/>
+          
+          <!-- 2. Inner Emblem Group (Fades and scales in after ring tracing) -->
+          <g class="badge-inner-group">
+            <!-- Deep Obsidian Shield -->
+            <circle cx="100" cy="100" r="90" fill="url(#badgeCoreDark)" stroke="url(#chromeRing)" stroke-width="2"/>
+
+            <!-- Subtle Concentric Radar Sensor Rings -->
+            <circle cx="100" cy="100" r="78" fill="none" stroke="rgba(56, 189, 248, 0.15)" stroke-width="1.2" stroke-dasharray="4 4"/>
+            <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1"/>
+
+            <!-- ==============================================
+                 BESPOKE "PARKWAVE" EMBLEM:
+                 Aerodynamic 'P' & Fluid Harmonic 'Wave' Monogram
+                 ============================================== -->
+
+            <!-- Pillar of the 'P' (Precision Beveled Upright) -->
+            <path d="M 68 56 C 68 52.5 70.5 50 74 50 L 78 50 C 81.5 50 84 52.5 84 56 L 84 144 C 84 147.5 81.5 150 78 150 L 74 150 C 70.5 150 68 147.5 68 144 Z" 
+                  fill="url(#platinumPillar)" 
+                  filter="drop-shadow(0 2px 6px rgba(0,0,0,0.6))"/>
+
+            <!-- Sweeping P-Head Loop (Electric Fluid Wave Surge) -->
+            <path d="M 84 52 C 118 52 142 66 142 88 C 142 108 118 122 84 122 L 84 106 C 108 106 124 98 124 88 C 124 76 108 68 84 68 Z" 
+                  fill="url(#electricWave)" 
+                  filter="drop-shadow(0 4px 10px rgba(2, 132, 199, 0.45))"/>
+
+            <!-- Fluid Harmonic Wave Crest (Flowing through the core) -->
+            <path d="M 84 122 C 104 122 120 128 136 136 C 122 142 102 138 84 134 Z" 
+                  fill="url(#cyanGlow)" 
+                  opacity="0.85"/>
+
+            <!-- Lower Dynamic Wave Flute (Aerodynamic Ground Effect) -->
+            <path d="M 52 134 C 76 122 110 122 148 138 C 112 129 76 129 52 134 Z" 
+                  fill="url(#cyanGlow)" 
+                  opacity="0.6"/>
+
+            <!-- Smart IoT Parking Beacon (Luminous Center Pulse Core) -->
+            <circle cx="104" cy="87" r="7.5" fill="#38bdf8" filter="drop-shadow(0 0 8px #00f2fe)"/>
+            <circle cx="104" cy="87" r="3.5" fill="#ffffff"/>
+
+            <!-- Circular Specular Glass Lens Reflection -->
+            <circle cx="100" cy="100" r="90" fill="url(#lensSpecular)"/>
+
+            <!-- Cardinal Precision Markers -->
+            <circle cx="100" cy="18" r="2" fill="#e2e8f0"/>
+            <circle cx="182" cy="100" r="2" fill="#e2e8f0"/>
+            <circle cx="100" cy="182" r="2" fill="#e2e8f0"/>
+            <circle cx="18" cy="100" r="2" fill="#e2e8f0"/>
+          </g>
+        </svg>
+
+        <!-- Dynamic Specular Reflection Light Sweep -->
+        <div class="badge-shine-sweep"></div>
+      </div>
+
+      <!-- Typography -->
+      <div class="splash-typography">
+        <h1 class="splash-brand-title">PARKWAVE</h1>
+        <div class="splash-tagline">SMART PARKING, SIMPLIFIED • BANGALORE</div>
+      </div>
+    </div>
+
+    <!-- Quick Skip Button -->
+    <button class="splash-skip-btn" id="btnSkipSplash" title="Skip Intro Animation">
+      Skip <span>➜</span>
+    </button>
+  </div>
+
+  <!-- Cinematic Aerial Parking Lot Background Layer -->
+  <div class="cinema-bg-container" id="cinemaLotBg" aria-hidden="true">
+    <div class="cinema-bg-parallax" id="cinemaParallax">
+      <div class="cinema-bg-image" id="cinemaBgImage"></div>
+      
+      <!-- Directional Traffic Flow Guidelines & Arrows -->
+      <div class="cinema-lanes-indicator">
+        <div class="lane-marker lane-west"></div>
+        <div class="lane-marker lane-east"></div>
+      </div>
+
+      <!-- Real-Time Slot Beacons (S-01 to S-20) overlaid on parking bays -->
+      <div class="cinema-lot-beacons" id="cinemaLotBeacons"></div>
+
+      <!-- Animated Moving and Parked Vehicle Layer -->
+      <div class="cinema-cars-stage" id="cinemaCarsStage"></div>
+    </div>
+
+    <!-- Vignette & Tint Overlay for Foreground Text Contrast -->
+    <div class="cinema-bg-overlay"></div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="app-header" id="appHeader">
+    <div class="header-container">
+      <div class="brand-box" id="brandBox" style="cursor: pointer;" title="Click to replay PARKWAVE Intro Animation">
+        <div class="brand-logo" id="brandLogoBtn">
+          <svg viewBox="0 0 40 40" width="28" height="28" fill="none">
+            <circle cx="20" cy="20" r="18" fill="#080d1a" stroke="#38bdf8" stroke-width="1.5"/>
+            <path d="M 14 11 L 17 11 L 17 29 L 14 29 Z" fill="#ffffff"/>
+            <path d="M 17 11 C 24 11 28 14 28 18 C 28 22 24 25 17 25 L 17 22 C 22 22 25 20.5 25 18 C 25 15.5 22 14 17 14 Z" fill="#38bdf8"/>
+            <path d="M 11 27 C 15 25 22 25 29 28" stroke="#00f2fe" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="21" cy="18" r="2" fill="#38bdf8"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>PARK WAVE</h1>
+          <span class="brand-sub">4-Wheeler Smart Parking • Bangalore Facility</span>
+        </div>
+      </div>
+
+      <div class="header-status">
+        <button class="btn btn-secondary btn-sm cinema-toggle-btn" id="btnToggleCinema" title="Toggle Aerial Lot Traffic Animation">
+          <span class="cinema-pulse-dot"></span>
+          <span id="cinemaToggleText">Aerial Lot: Active</span>
+        </button>
+        <div class="status-badge online" id="serverStatusBadge">
+          <span class="status-dot"></span>
+          <span id="statusText">System Online</span>
+        </div>
+        <div class="live-clock" id="liveClock">--:--:--</div>
+        <button class="btn btn-secondary btn-sm" id="btnClearData" title="Clear all parking data and reset all bays to vacant">
+          🗑 Clear All Data
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main" id="mainContent">
+    <!-- Top Statistics / KPI Bar -->
+    <section class="kpi-section" aria-label="System Metrics">
+      <div class="kpi-grid">
+        <div class="kpi-card total-card" id="kpiTotalCard">
+          <div class="kpi-icon">🚗</div>
+          <div class="kpi-info">
+            <span class="kpi-label">TOTAL CAPACITY</span>
+            <span class="kpi-value" id="kpiTotal">20</span>
+          </div>
+        </div>
+
+        <div class="kpi-card occupied-card" id="kpiOccupiedCard">
+          <div class="kpi-icon">🛑</div>
+          <div class="kpi-info">
+            <span class="kpi-label">OCCUPIED BAYS</span>
+            <span class="kpi-value" id="kpiOccupied">0</span>
+          </div>
+        </div>
+
+        <div class="kpi-card vacant-card" id="kpiVacantCard">
+          <div class="kpi-icon">🟢</div>
+          <div class="kpi-info">
+            <span class="kpi-label">AVAILABLE VACANT</span>
+            <span class="kpi-value" id="kpiVacant">20</span>
+          </div>
+        </div>
+
+        <div class="kpi-card revenue-card" id="kpiRevenueCard">
+          <div class="kpi-icon">💰</div>
+          <div class="kpi-info">
+            <span class="kpi-label">REVENUE COLLECTED</span>
+            <span class="kpi-value" id="kpiRevenue">₹0.00</span>
+          </div>
+        </div>
+
+        <div class="kpi-card next-card" id="kpiNextCard">
+          <div class="kpi-icon">⚡</div>
+          <div class="kpi-info">
+            <span class="kpi-label">NEXT VACANT BAY</span>
+            <span class="kpi-value highlight" id="kpiNextSlot">S-01</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Workspace Views">
+      <button class="tab-btn active" data-tab="tab-grid" id="btnTabGrid">
+        <span class="tab-icon">🅿</span> Visual Bay Grid
+      </button>
+      <button class="tab-btn" data-tab="tab-entry" id="btnTabEntry">
+        <span class="tab-icon">➕</span> Vehicle Entry
+      </button>
+      <button class="tab-btn" data-tab="tab-exit" id="btnTabExit">
+        <span class="tab-icon">💳</span> Exit & Billing
+      </button>
+      <button class="tab-btn" data-tab="tab-search" id="btnTabSearch">
+        <span class="tab-icon">🔍</span> Search Vehicle
+      </button>
+      <button class="tab-btn" data-tab="tab-history" id="btnTabHistory">
+        <span class="tab-icon">📋</span> Activity Ledger
+      </button>
+    </nav>
+
+    <!-- Tab 1: Visual Parking Bay Grid -->
+    <section class="tab-content active" id="tab-grid">
+      <div class="panel-header">
+        <div>
+          <h2>Real-Time Parking Bays (2D Visual Layout)</h2>
+          <p class="panel-desc">Click any occupied bay to inspect details or fast checkout. Click a vacant bay to allot it.</p>
+        </div>
+        <div class="grid-controls">
+          <div class="filter-group">
+            <button class="filter-btn active" data-filter="all" id="filterAll">All</button>
+            <button class="filter-btn" data-filter="vacant" id="filterVacant">Vacant</button>
+            <button class="filter-btn" data-filter="occupied" id="filterOccupied">Occupied</button>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnRefreshGrid">↻ Refresh</button>
+        </div>
+      </div>
+
+      <div class="parking-lot-container" id="parkingLotContainer">
+        <!-- 2D bays grid dynamically rendered here -->
+        <div class="slots-grid" id="slotsGrid"></div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Vehicle Entry -->
+    <section class="tab-content" id="tab-entry">
+      <div class="entry-layout">
+        <div class="card form-card">
+          <div class="card-header">
+            <h2>🚗 New Vehicle Entry</h2>
+            <span class="badge badge-info">Rule: Base Fee ₹50</span>
+          </div>
+          <p class="card-desc">
+            Enter the 4-wheeler registration number plate. The system will perform an automated <strong>duplicate check</strong> before allotting the next available vacant bay.
+          </p>
+
+          <form id="formEntry" class="interactive-form">
+            <div class="form-group">
+              <label for="inputVehicleNo">Vehicle Registration Plate No:</label>
+              <div class="plate-input-wrapper">
+                <span class="plate-country">IND</span>
+                <input 
+                  type="text" 
+                  id="inputVehicleNo" 
+                  class="plate-input" 
+                  placeholder="e.g. KA 01 AB 1234" 
+                  autocomplete="off"
+                  required
+                >
+              </div>
+              <small class="form-hint">Tip: Standard Indian vehicle registration numbers (e.g. KA 01 MG 1234, DL 08 CD 4321).</small>
+            </div>
+
+            <div class="next-allocation-preview" id="entrySlotPreview">
+              <span class="preview-label">Assigned Bay on Submit:</span>
+              <span class="preview-slot" id="entryPreviewSlot">S-01</span>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-lg" id="btnSubmitEntry">
+                <span>✔ Allot Bay & Print Entry Pass</span>
+              </button>
+            </div>
+          </form>
+
+          <div class="alert-box error hidden" id="entryErrorAlert">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+              <strong id="entryErrorTitle">Invalid Entry</strong>
+              <p id="entryErrorMessage">Invalid entry, the vehicle already exists</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card side-info-card">
+          <h3>📌 Entry Workflow & Business Rules</h3>
+          <ul class="rule-list">
+            <li>
+              <div class="rule-bullet">1</div>
+              <div>
+                <strong>Automated Duplicate Prevention</strong>
+                <p>If the vehicle is already parked in the facility, entry is blocked with <em>"Invalid entry, the vehicle already exists"</em>.</p>
+              </div>
+            </li>
+            <li>
+              <div class="rule-bullet">2</div>
+              <div>
+                <strong>Sequential Bay Allotment</strong>
+                <p>The system prioritizes the lowest-numbered vacant bay (S-01 through S-20).</p>
+              </div>
+            </li>
+            <li>
+              <div class="rule-bullet">3</div>
+              <div>
+                <strong>Entry Pass Generation</strong>
+                <p>Issues an initial pass with ticket number, entry timestamp, bay number, and base fee ₹50.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 3: Vehicle Exit & Billing -->
+    <section class="tab-content" id="tab-exit">
+      <div class="exit-layout">
+        <div class="card form-card">
+          <div class="card-header">
+            <h2>💳 Vehicle Exit & Smart Billing</h2>
+            <span class="badge badge-warning">Base ₹50 + ₹20/hr (Ceil)</span>
+          </div>
+
+          <div class="form-group">
+            <label for="selectActiveVehicle">Quick Select Currently Parked Vehicle:</label>
+            <select id="selectActiveVehicle" class="form-select">
+              <option value="">-- Choose active parked car --</option>
+            </select>
+          </div>
+
+          <div class="divider-text"><span>OR SEARCH DIRECTLY</span></div>
+
+          <div class="search-inline">
+            <div class="form-group flex-1">
+              <label for="inputExitTarget">Enter Vehicle Plate or Ticket No:</label>
+              <input type="text" id="inputExitTarget" class="form-input" placeholder="e.g. KA 01 MJ 5544 or 7">
+            </div>
+            <button type="button" class="btn btn-secondary" id="btnPreviewBill">
+              🔍 Calculate Fee
+            </button>
+          </div>
+
+          <!-- Live Tariff Breakdown Card -->
+          <div class="billing-card" id="billingCard">
+            <div class="billing-header">
+              <span class="billing-title">Tariff Calculation Breakdown</span>
+              <span class="billing-status" id="billStatus">Ready</span>
+            </div>
+
+            <div class="billing-rows">
+              <div class="bill-row">
+                <span>Vehicle Registration:</span>
+                <strong id="billVehicle">---</strong>
+              </div>
+              <div class="bill-row">
+                <span>Allocated Bay:</span>
+                <strong id="billSlot">---</strong>
+              </div>
+              <div class="bill-row">
+                <span>Entry Timestamp:</span>
+                <span id="billEntryTime">---</span>
+              </div>
+              <div class="bill-row">
+                <span>Checkout Timestamp:</span>
+                <span id="billExitTime">---</span>
+              </div>
+              <div class="bill-row">
+                <span>Parked Duration:</span>
+                <span id="billDuration" class="highlight-text">---</span>
+              </div>
+              <div class="bill-row">
+                <span>Billed Hours (Ceiling Rule):</span>
+                <span id="billBilledHours">---</span>
+              </div>
+              <hr class="bill-divider">
+              <div class="bill-row">
+                <span>Base Fare (First 1 Hour):</span>
+                <span>₹50.00</span>
+              </div>
+              <div class="bill-row">
+                <span>Addl Hourly Charges:</span>
+                <span id="billHourlyCharge">₹0.00</span>
+              </div>
+              <hr class="bill-divider">
+              <div class="bill-row total-row">
+                <span>TOTAL AMOUNT DUE:</span>
+                <span class="total-amount" id="billTotalAmount">₹0.00</span>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-danger btn-lg w-100" id="btnConfirmExit" disabled>
+              ✔ Complete Exit & Generate Invoice
+            </button>
+          </div>
+        </div>
+
+        <div class="card side-info-card">
+          <h3>📐 Pricing Formula</h3>
+          <div class="pricing-formula-box">
+            <div class="formula-title">₹50 (1st hr) + (Addl Started Hours × ₹20)</div>
+            <p><strong>Base Fare:</strong> ₹50 (strictly covers the first 1 hour).</p>
+            <p><strong>Additional Rate:</strong> ₹20 per started hour after 1 full hour.</p>
+            <p><strong>Rule:</strong> ₹20 is never charged before the first complete hour has elapsed.</p>
+          </div>
+
+          <table class="pricing-examples-table">
+            <thead>
+              <tr>
+                <th>Duration</th>
+                <th>Billed Hours</th>
+                <th>Total Fee</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>30 minutes</td><td>1 hr (base)</td><td><strong>₹50.00</strong></td></tr>
+              <tr><td>1 hr 00 min</td><td>1 hr (base)</td><td><strong>₹50.00</strong></td></tr>
+              <tr><td>1 hr 30 min</td><td>2 hrs (1 addl)</td><td><strong>₹70.00</strong></td></tr>
+              <tr><td>2 hr 00 min</td><td>2 hrs (1 addl)</td><td><strong>₹70.00</strong></td></tr>
+              <tr><td>2 hr 15 min</td><td>3 hrs (2 addl)</td><td><strong>₹90.00</strong></td></tr>
+              <tr><td>3 hr 00 min</td><td>3 hrs (2 addl)</td><td><strong>₹90.00</strong></td></tr>
+              <tr><td>3 hr 15 min</td><td>4 hrs (3 addl)</td><td><strong>₹110.00</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 4: Search Vehicle -->
+    <section class="tab-content" id="tab-search">
+      <div class="card search-card">
+        <h2>🔍 Search Parked Vehicle</h2>
+        <p class="card-desc">Find where a vehicle is currently parked, view elapsed time, and locate the bay in the grid.</p>
+
+        <div class="search-bar-wrapper">
+          <input 
+            type="text" 
+            id="searchQueryInput" 
+            class="form-input search-input-lg" 
+            placeholder="Enter vehicle number (e.g. KA 01 MJ 5544)"
+          >
+          <button class="btn btn-primary" id="btnSearchVehicle">Search Vehicle</button>
+        </div>
+
+        <div class="search-result-container hidden" id="searchResultContainer">
+          <div class="search-result-card" id="searchResultCard">
+            <div class="result-header">
+              <div class="result-slot-badge" id="searchResultSlot">---</div>
+              <div>
+                <h3 id="searchResultPlate">---</h3>
+                <span class="badge badge-success">Currently Parked</span>
+              </div>
+            </div>
+            <div class="result-details-grid">
+              <div>
+                <span class="detail-label">Ticket Number:</span>
+                <span class="detail-val" id="searchResultTicket">---</span>
+              </div>
+              <div>
+                <span class="detail-label">Entry Time:</span>
+                <span class="detail-val" id="searchResultEntry">---</span>
+              </div>
+              <div>
+                <span class="detail-label">Elapsed Time:</span>
+                <span class="detail-val highlight-text" id="searchResultDuration">---</span>
+              </div>
+              <div>
+                <span class="detail-label">Est. Fee Due:</span>
+                <span class="detail-val" id="searchResultAmount">---</span>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btnGoToSlot">View Bay in Grid ➜</button>
+          </div>
+        </div>
+
+        <div class="alert-box error hidden" id="searchNotFoundAlert">
+          <div class="alert-icon">❌</div>
+          <div class="alert-content">
+            <strong>Vehicle Not Found</strong>
+            <p>Vehicle not found or not currently parked.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 5: Activity Ledger & History -->
+    <section class="tab-content" id="tab-history">
+      <div class="card ledger-card">
+        <div class="panel-header">
+          <div>
+            <h2>📋 Vehicle Entries & Audit History</h2>
+            <p class="panel-desc">Complete database log of all active and historical parking sessions.</p>
+          </div>
+          <div class="ledger-actions">
+            <input type="text" id="ledgerFilterInput" class="form-input form-input-sm" placeholder="Filter records...">
+            <button class="btn btn-secondary btn-sm" id="btnExportCsv">⬇ Export CSV</button>
+            <button class="btn btn-secondary btn-sm" id="btnRefreshHistory">↻ Refresh</button>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="data-table" id="historyTable">
+            <thead>
+              <tr>
+                <th>Ticket #</th>
+                <th>Vehicle Number</th>
+                <th>Bay No</th>
+                <th>Entry Timestamp</th>
+                <th>Exit Timestamp</th>
+                <th>Amount (₹)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Dialog: Park Wave Official Receipt -->
+  <dialog class="receipt-dialog" id="receiptDialog">
+    <div class="receipt-dialog-card">
+      <div class="dialog-close-bar">
+        <span class="dialog-title" id="receiptDialogTitle">Park Wave Official Receipt</span>
+        <button class="btn-icon-close" id="btnCloseReceipt" aria-label="Close">✕</button>
+      </div>
+
+      <div class="paper-receipt" id="paperReceipt">
+        <pre class="receipt-ascii" id="receiptContent"></pre>
+        <div class="receipt-barcode" id="receiptBarcode"></div>
+      </div>
+
+      <div class="dialog-actions">
+        <button class="btn btn-primary" id="btnDownloadReceipt">💾 Download Receipt (.txt)</button>
+        <button class="btn btn-secondary" id="btnPrintReceipt">🖨️ Print</button>
+        <button class="btn btn-secondary" id="btnDismissReceipt">Close</button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <footer class="app-footer">
+    <p>© 2026 Park Wave • 4-Wheeler Smart Parking Management • DBMS + Python & Interactive Web</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

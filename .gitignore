@@ -1,0 +1,28 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+__pycache__.zip
+
+# Auto-downloaded binaries
+cloudflared.exe
+
+# Local database and logs
+*.db
+*.sqlite3
+*.log
+
+# Virtual environments
+.env
+.venv/
+venv/
+ENV/
+
+# IDE configurations
+.idea/
+.vscode/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
